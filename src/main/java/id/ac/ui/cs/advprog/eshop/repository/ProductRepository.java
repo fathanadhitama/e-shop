@@ -14,6 +14,7 @@ public class ProductRepository{
 
     public Product create(Product product){
         productData.add(product);
+        product.setProductId(generateID());
         return product;
     }
 
