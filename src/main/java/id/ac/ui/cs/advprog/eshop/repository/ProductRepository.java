@@ -10,11 +10,9 @@ import java.util.List;
 @Repository
 public class ProductRepository{
     private List<Product> productData = new ArrayList<>();
-    private int idCounter = 0;
 
     public Product create(Product product){
         productData.add(product);
-        product.setProductId(generateID());
         return product;
     }
 
@@ -28,6 +26,9 @@ public class ProductRepository{
     }
 
     public Product edit(Product updatedProduct){
+        if(updatedProduct.getProductQuantity() < 0){
+            updatedProduct.setProductQuantity(0);
+        }
         for (int i = 0; i < productData.size(); i++) {
             Product product = productData.get(i);
             if(product.getProductId().equals(updatedProduct.getProductId())){
@@ -36,10 +37,6 @@ public class ProductRepository{
             }
         }
         return null;
-    }
-
-    public String generateID(){
-        return Integer.toString(idCounter++);
     }
 
     public Iterator<Product> findAll(){
