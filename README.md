@@ -1,7 +1,13 @@
-# Modul 1 : Coding Standards
+# Tutorial Pemrograman Lanjut
 
 > #### Fathan Naufal Adhitama (2206825965)
+**Contents:**
+1. **[Tutorial 1](#tutorial-1)**
+2. **[Tutorial 2](#tutorial-2)**
 
+
+## Tutorial 1
+***
 ### Reflection 1
 
 Setelah mempelajari lebih lanjut tentang ***coding standards*** 
@@ -63,3 +69,37 @@ adalah menuliskan kode yang sama sehingga terdapat kode yang bersifat
 masalah tersebut adalah dengan membuat *base class* yang berisi
 *setup procedures* dan *instance variables* yang sama sehingga dapat
 digunakan di beberapa test suite tanpa menyebabkan *code duplication*
+
+***
+
+## Tutorial 2
+***
+### Reflection
+
+1. **List the code quality issue(s) that you fixed during 
+the exercise and explain your strategy on fixing them.**
+
+    Setelah dilakukan *code scanning* oleh PMD, terdeteksi beberapa
+   _code quality issues_ yang terdapat pada kode yang saya tulis. Di antaranya
+    adalah sebagai berikut: <br><br>
+   - **_Unused Import_** : 
+   <br>Adanya _imports_ yang tidak perlu karena tidak digunakan.
+   **Strategi** untuk masalah tersebut adalah dengan menghapus semua _imports_ yang tidak digunakan.
+   <br><br>
+   - **_Unnecessary Modifiers_**:
+     <br>Penggunaan modifier **public** yang sebenarnya tidak perlu
+      karena secara default, method-method dalam interface sudah memiliki modifier
+   `public abstract` tanpa perlu ditulis kembali. **Strategi** untuk masalah tersebut adalah dengan menghapus 
+   semua modifier public yang tidak perlu.<br><br>
+
+2. Look at your CI/CD workflows (GitHub)/pipelines (GitLab). 
+Do you think the current implementation has met the definition
+of Continuous Integration and Continuous Deployment? 
+Explain the reasons (minimum 3 sentences)!
+Implementasi yang saat ini saya terapkan pada kode saya telah sesuai 
+dengan prinsip **CI/CD**. **_Continuous Integration_** diaplikasikan
+dengan _workflows_ yang dijalankan setiap adanya push, pull dan merge di
+setiap branch karena adanya file-file seperti `ci.yml`, `scorecard.yml`, dan `pmd_action.yml`.
+Sedangkan **_Continuous Deployment_** diaplikasikan dengan penggunaan Koyeb sebagai _platform_
+untuk deployment aplikasi ini. Koyeb akan secara otomatis melakukan re-deploy setiap
+adanya perubahan pada branch `master`.
