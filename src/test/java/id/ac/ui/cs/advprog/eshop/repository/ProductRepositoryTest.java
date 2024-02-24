@@ -107,7 +107,7 @@ class ProductRepositoryTest {
         Product editedProduct = new Product();
         editedProduct.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
         editedProduct.setProductName("Sampo Cap Bango");
-        editedProduct.setProductQuantity(-5);
+        editedProduct.setProductQuantity(5);
         productRepository.edit(editedProduct);
 
         product = productRepository.findById("x");
