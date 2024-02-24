@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class CarRepository {
+public class CarRepository implements CarRepoInterface{
     static int id = 0;
     private List<Car> carData = new ArrayList<>();
     public Car create(Car car){
@@ -36,12 +36,11 @@ public class CarRepository {
 
     public Car update(String id, Car updatedCar){
         for (int i = 0; i < carData.size(); i++) {
-            Car car = carData.get(i);
-            if(car.getCarId().equals(id)){
-                car.setCarName(updatedCar.getCarName());
-                car.setCarColor(updatedCar.getCarColor());
-                car.setCarQuantity(updatedCar.getCarQuantity());
-                return car;
+            String carId = carData.get(i).getCarId();
+            String updatedCarId = updatedCar.getCarId();
+            if(carId.equals(updatedCarId)){
+                carData.set(i, updatedCar);
+                return updatedCar;
             }
         }
         return null; // Handle the case where the car is not found
