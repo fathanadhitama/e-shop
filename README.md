@@ -4,6 +4,7 @@
 **Contents:**
 1. **[Tutorial 1](#tutorial-1)**
 2. **[Tutorial 2](#tutorial-2)**
+3. **[Tutorial 3](#tutorial-3)**
 
 
 ## Tutorial 1
@@ -103,3 +104,55 @@ setiap branch karena adanya file-file seperti `ci.yml`, `scorecard.yml`, dan `pm
 Sedangkan **_Continuous Deployment_** diaplikasikan dengan penggunaan Koyeb sebagai _platform_
 untuk deployment aplikasi ini. Koyeb akan secara otomatis melakukan re-deploy setiap
 adanya perubahan pada branch `master`.
+***
+
+## Tutorial 3
+***
+### Reflection
+1. Explain what principles you apply to your project!
+   - **Single Responsibility Principle (SRP)**: Saya memisahkan fungsi-fungsi 
+   yang memiliki tugas berbeda atau lebih detil ke _class_ sendiri 
+   sehingga setiap kelas hanya fokus pada 1 tugas saja. Contoh:
+     - `CarController` terpisah dengan `ProductController`
+     - `ProductFinder` terpisah dengan `ProductRepository`
+   - **Interface Segregation Principle (ISP)**: Setiap _class_ mengimplementasikan
+   Interface-interface yang relevan dengan fungsi kelas tersebut. Contoh:
+     - `CarRepository` mengimplementasikan `CarRepoInterface`
+     - `ProductRepository` mengimplementasikan `ProductRepoInterface`
+     - `ProductServiceImpl` mengimplementasikan `ProductService`
+     - `CarServiceImpl` mengimplementasikan `CarService`
+   - **Dependency Inversions Principle (DIP)**: _Class_ harus bergantung pada 
+   _Interface/Abstract Class_, bukan _Concrete Class_. Contoh:
+     - `carService` pada `CarController` seharusnya menggunakan Interface `CarService`,
+     bukan `CarServiceImpl`
+   - **Open-Closed Principle (OCP)** : Sebuah _class_ harus bersifat _open_ terhadap extension,
+   tetapi _closed_ terhadap _modification_. Contoh:
+     - Tidak secara langsung melakukan modifikasi terhadap objek Car 
+     pada method `update` di class `CarRepository`.
+   - **Liskov Substitution Principle (LSP)** : Suatu subclass seharusnya dapat menggantikan
+   superclass-nya tanpa memengaruhi efektivitas program. Contoh:
+     - class `CarController` seharusnya tidak menjadi subclass dari `ProductController`
+     karena keduanya memiliki fungsi dan sifat yang berbeda.
+
+2. Explain the advantages of applying SOLID principles to your project with examples.
+   - Dengan menerapkan prinsip-prinsip SOLID, kode akan menjadi lebih teratur, mudah dimodifikasi, 
+   dan dapat di-_maintain_ dengan baik. Dengan begitu, _developer_ dapat mengurangi risiko rapuhnya
+   perangkat lunak, mempermudah untuk melakukan perubahan yang dibutuhkan di masa depan.
+   - Contoh:
+     - Dengan memisahkan kelas `ProductFinder` dari `ProductRepository`, developer akan lebih
+     mudah untuk mengubah kode yang spesifik terhadap fitur _finder_. Sehingga, ketika melakukan debugging
+     ataupun menambah fungsionalitas lain, developer dapat lebih fokus pada 1 kelas saja.
+     - Dengan menggunakan Interface `CarService` daripada Concrete Class `CarServiceImpl`,
+     developer tidak perlu lagi mengubah controller jika membuat implementasi baru
+
+3. Explain the disadvantages of not applying SOLID principles to your project with examples.
+   - Berkebalikan dengan penjelasan pada nomor 2, apabila kita tidak menggunakan prinsip SOLID
+   pada kode kita, kode akan menjadi lebih sulit untuk di-_maintain_ ke depannya karena rendahnya
+   _readability_ dari kode tersebut. Akibatnya, kode akan menjadi lebih rentan pada perubahan
+   dan akan sulit untuk melakukan _testing_.
+   - Contoh: 
+     - Apabila tidak menerapkan SRP pada kelas `ProductRepository`, ke depannya akan sulit dilakukan
+     perubahan terhadap fungsi tertentu, terutama apabila method yang diterapkan sudah semakin banyak dan kompleks.
+     Tentu akan lebih mudah apabila kelas-kelas dipisahkan sesuai fungsinya.
+     - Apabila tidak menerapkan DIP, ketergantungan antarkelas akan testing lebih sulit
+     dan sulit melakukan perubahan karena akan banyak bagian yang perlu diperhatikan untuk diganti.
