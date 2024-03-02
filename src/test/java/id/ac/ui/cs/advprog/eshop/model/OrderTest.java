@@ -1,7 +1,6 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -37,7 +36,7 @@ class OrderTest {
 
         assertThrows(IllegalArgumentException.class, () -> {
             Order order = new Order("13652556-012a-4c07-b546-54eb1396d79b",
-                    this.products, 1708560000L, "Safira Sudrajat")
+                    this.products, 1708560000L, "Safira Sudrajat");
         });
     }
 
@@ -50,7 +49,7 @@ class OrderTest {
         assertEquals("Sampo Cap Bambang", order.getProducts().get(0).getProductName());
         assertEquals("Sabun Cap Usep", order.getProducts().get(1).getProductName());
 
-        assertEquals("13652556-012a-4c07-b546-54eb1396d79b", order.getOrderId());
+        assertEquals("13652556-012a-4c07-b546-54eb1396d79b", order.getId());
         assertEquals(1708560000L, order.getOrderTime());
         assertEquals("Safira Sudrajat", order.getAuthor());
         assertEquals("WAITING_PAYMENT", order.getStatus());
