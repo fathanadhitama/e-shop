@@ -21,7 +21,10 @@ public class PaymentRepositoryTest {
     @BeforeEach
     void setUp() {
         paymentRepository = new PaymentRepository();
+
         paymentData = new HashMap<>();
+        this.paymentData.put("voucherCode", "ESHOP1234ABC5678");
+
         List<Product> products = new ArrayList<>();
 
         Product product1 = new Product();
@@ -82,7 +85,7 @@ public class PaymentRepositoryTest {
             paymentRepository.save(payment);
         }
 
-        Payment findResult = paymentRepository.findById(payments.get(1).getId());
+        Payment findResult = paymentRepository.findById("falseID");
         assertNull(findResult);
     }
 
@@ -92,7 +95,7 @@ public class PaymentRepositoryTest {
             paymentRepository.save(payment);
         }
 
-        List <Payment> paymentList = paymentRepository.findAllByAuthor(payments.get(1).getAuthor());
-        assertEquals(2, paymentList.size());
+        List<Payment> paymentList = paymentRepository.findAll();
+        assertEquals(3, paymentList.size());
     }
 }
