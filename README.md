@@ -5,6 +5,7 @@
 1. **[Tutorial 1](#tutorial-1)**
 2. **[Tutorial 2](#tutorial-2)**
 3. **[Tutorial 3](#tutorial-3)**
+4. **[Tutorial 4](#tutorial-4)**
 
 
 ## Tutorial 1
@@ -156,3 +157,64 @@ adanya perubahan pada branch `master`.
      Tentu akan lebih mudah apabila kelas-kelas dipisahkan sesuai fungsinya.
      - Apabila tidak menerapkan DIP, ketergantungan antarkelas akan testing lebih sulit
      dan sulit melakukan perubahan karena akan banyak bagian yang perlu diperhatikan untuk diganti.
+
+***
+
+## Tutorial 4
+***
+### Reflection
+1. Menurut Percival (2017) berikut adalah pertanyaan-pertanyaan reflektif yang dapat kita gunakan
+untuk mengevaluasi tiga objektif utama pada _tests_ kita:
+   1. Correctness
+      - Do I have enough functional tests to reassure myself that my application
+        really works, from the point of view of the user? 
+      <br>>> Menurut saya, functional test yang telah dibuat pada program ini sudah cukup untuk
+      memastikan bahwa _code_ yang dibuat dapat berfungsi dengan baik sesuai ekspektasi awal.
+      - Am I testing all the edge cases thoroughly?
+      <br>>> Tests yang telah dibuat sudah mencakup kasus-kasus yang disebutkan dalam soal. Namun,
+      masih terdapat kemungkinan _edge cases_ lain yang belum di-_cover_.
+      - Do I have tests that check whether all my components fit together
+        properly?
+        <br>>> Untuk memastikan apakah semua program dapat berjalan dengan baik secara keseluruhan,
+        dapat dilihat melalui _functional tests_ yang telah dibuat. Namun, untuk melakukan hal tersebut
+        dengan lebih pasti, dapat dibuat juga _Integration Test_
+   2. Maintainability
+      - Are my tests giving me the confidence to refactor my code, fearlessly
+        and frequently?
+        <br>>> Iya, dengan memiliki tests yang dapat mengecek benar atau tidaknya kode saya, saya merasa lebih nyaman untuk melakukan perubahan dan perbaikan pada kode tanpa harus takut untuk merusak program yang sebelumnya berjalan dengan baik
+      - Are my tests helping me to drive out a good design? If I have a lot of
+        integration tests but less unit tests, do I need to make more unit tests to
+        get better feedback on my code design?
+        <br>>> Menurut saya, test-test yang ada dapat membantu saya untuk memikirkan desain yang lebih baik dalam program saya dengan memikirkan
+        kemungkinan-kemungkinan yang terjadi pada program saya dari perspektif _user_. Integration test dan unit test memiliki tujuan yang berbeda, sehingga
+        menjaga keseimbangan antara keduanya akan lebih baik agar tujuan dari masing-masing test dapat terpenuhi.
+   3. Productive _workflow_
+        - Are my feedback cycles as fast as I would like them? When do I get
+          warned about bugs, and is there any practical way to make that happen
+          sooner?
+          <br>>> Dengan tests yang ada, saya bisa mendapatkan _feedback_ sesegera mungkin setelah saya melakukan perubahan pada kode.
+            Apabila terdapat bug, saya akan mendapat _warning_ dan dapat melihat dimana kode yang harus diperbaiki.
+            Salah satu cara yang dapat dilakukan untuk mendapat feedback dengan lebih cepat adalah dengan membuat lebih banyak functional tests
+        - Is there some way that I could write faster integration tests that would
+          get me feedback quicker?
+          <br>>> Untuk menulis integration tests yang dapat memberi feedback dengan lebih cepat, kita dapat mengoptimalkan 
+            setup dan teardown dari testing, lebih fokus untuk menguji skenario yang kritis dan gunakan stubbing tools untuk menggantikan
+            komponen eksternal yang dapat memperlambat testing.
+        - Can I run a subset of the full test suite when I need to?
+          <br>>> Ya, kita dapat memberi tanda pada tes-tes tertentu menjadi "penting" dan mengatur test suite untuk hanya menjalankan tes tersebut.
+        - Am I spending too much time waiting for tests to run, and thus less time
+          in a productive flow state?
+          <br>>> Tidak, karena saat ini tests yang ada tidak membutuhkan waktu lama untuk memberikan feedback
+            sehingga tidak akan menghambat produktivitas.
+2. You have created unit tests in Tutorial. Now reflect whether your tests have successfully followed F.I.R.S.T. principle or not. If not, explain things that you need to do the next time you create more tests.
+   - Fast
+     - Testing yang telah dibuat tidak membutuhkan waktu lama untuk memberikan feedback
+       sehingga tidak akan menghambat produktivitas.
+   - Isolated/Independent
+     - Setiap test case tidak akan memengaruhi hasil dari test case lain
+   - Repeatable
+     - Hasil tests akan selalu konsisten ketika tests dijalankan berulang kali.
+   - Self-validating
+     - Semua tests sudah menerapkan prinsip self-validating dengan menggunakan assertion yang benar dan strict terhadap hasil pass maupun fail.
+   - Thorough/Timely
+     - Tests yang ada telah mencakup keseluruhan skenario happy dan unhappy paths sesuai yang dijelaskan pada modul.
